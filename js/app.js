@@ -10,6 +10,11 @@
 // good with other dogs
 // breed
 
+let state = {
+  tableElm: document.getElementById("dog-table"),
+  dogs: []
+}
+
 // Prototype of Dog
 // Constructor (like a factory)
 function Dog(name, breed, age, tricks) {
@@ -19,10 +24,46 @@ function Dog(name, breed, age, tricks) {
   this.tricks = tricks;
 }
 
+Dog.prototype.oneYearLater = function() {
+  this.age++;
+}
+
+Dog.prototype.render = function() {
+  let dogRow = document.createElement("tr");
+
+  let dogNameTD = document.createElement("td");
+  dogNameTD.textContent = this.name;
+  dogRow.appendChild(dogNameTD);
+
+  let dogBreedTD = document.createElement("td");
+  dogBreedTD.textContent = this.breed;
+  dogRow.appendChild(dogBreedTD);
+
+  let dogAgeTD = document.createElement("td");
+  dogAgeTD.textContent = this.age;
+  dogRow.appendChild(dogAgeTD);
+
+  state.tableElm.appendChild(dogRow);
+}
+
 let dog1 = new Dog("Oso", "Rottweiler", 2, ["spin", "roll over", "fetch"]);
 let dog2 = new Dog("Rover", "Lab", 5, []);
 let dog3 = new Dog("Coffee", "Beagle", 7, ["shake"]);
 console.log(dog1, dog2, dog3);
+
+state.dogs.push(dog1);
+state.dogs.push(dog2);
+state.dogs.push(dog3);
+
+console.log(state.dogs);
+
+for (let dog of state.dogs) {
+  dog.oneYearLater();
+}
+
+for (let dog of state.dogs) {
+  dog.render();
+}
 
 
 // Object literal
