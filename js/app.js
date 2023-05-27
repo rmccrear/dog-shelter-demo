@@ -10,6 +10,9 @@
 // good with other dogs
 // breed
 
+
+// **** SETUP CODE HERE *****
+
 let state = {
   tableElm: document.getElementById("dog-table"),
   dogs: []
@@ -28,6 +31,11 @@ Dog.prototype.oneYearLater = function() {
   this.age++;
 }
 
+Dog.prototype.calcDogAge = function() {
+  let age = this.age;
+  this.dogAge = age*7;
+}
+
 Dog.prototype.render = function() {
   let dogRow = document.createElement("tr");
 
@@ -39,28 +47,35 @@ Dog.prototype.render = function() {
   dogBreedTD.textContent = this.breed;
   dogRow.appendChild(dogBreedTD);
 
-  let dogAgeTD = document.createElement("td");
-  dogAgeTD.textContent = this.age;
-  dogRow.appendChild(dogAgeTD);
+  let ageTD = document.createElement("td");
+  ageTD.textContent = this.age;
+  dogRow.appendChild(ageTD);
 
   state.tableElm.appendChild(dogRow);
 }
 
+
+// ***** EXECUTABLE CODE HERE ********
+
+// ** INITIALIZE OBJECTS **
 let dog1 = new Dog("Oso", "Rottweiler", 2, ["spin", "roll over", "fetch"]);
 let dog2 = new Dog("Rover", "Lab", 5, []);
 let dog3 = new Dog("Coffee", "Beagle", 7, ["shake"]);
 console.log(dog1, dog2, dog3);
 
+// ** ADD TO ARRAY **
 state.dogs.push(dog1);
 state.dogs.push(dog2);
 state.dogs.push(dog3);
 
 console.log(state.dogs);
 
+// ** DO CALCULATIONS ON ALL OBJECTS **
 for (let dog of state.dogs) {
   dog.oneYearLater();
 }
 
+// ** RENDER TO DOM **
 for (let dog of state.dogs) {
   dog.render();
 }
