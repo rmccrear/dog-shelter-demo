@@ -9,7 +9,33 @@
       <h1>Adopt a Dog</h1>
     </header>
     <main>
-      <h2>Dog Available for Adoption:</h2>
+      <h2>Dogs Available for Adoption:</h2>
+      <form>
+        <fieldset>
+          <legend>Dog Data</legend>
+          <label>
+            Name:
+            <input type="text" name="name">
+          </label>
+          <label>
+            Breed:
+            <input type="text" name="breed">
+          </label>
+          <label>
+           Age:
+            <input type="number" name="age">
+          </label>
+        </fieldset>
+        <fieldset>
+          <legend>Tricks</legend>
+          <label>
+            Tricks, separate by spaces:
+            <input type="text" name="tricks">
+          </label>
+        </fieldset>
+        <button type="submit">Submit new dog</button>
+      </form>
+
       <table id="dog-table">
         <tr>
           <th>Name</th>

@@ -13,8 +13,10 @@
 
 // **** SETUP CODE HERE *****
 
+// GLOBALS
 let state = {
   tableElm: document.getElementById("dog-table"),
+  formElm: document.querySelector("form"), // STEP 1: get form element
   dogs: []
 }
 
@@ -80,6 +82,19 @@ for (let dog of state.dogs) {
   dog.render();
 }
 
+// STEP 2: declare handler
+function handleSubmitForm(event) {
+  event.preventDefault();
+  console.log(event);
+  let dog = new Dog(event.target.name.value, event.target.breed.value, event.target.age.value, event.target.tricks.value.split(" "));
+  console.log(dog)
+  state.dogs.push(dog);
+  dog.render();
+}
+
+// STEP 3: 
+// Add listener 
+state.formElm.addEventListener("submit", handleSubmitForm);
 
 // Object literal
 // let dog1 = {
