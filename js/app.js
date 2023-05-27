@@ -24,22 +24,29 @@ function Dog(name, breed, age, tricks) {
   this.tricks = tricks;
 }
 
+// function Store(name, minCust, maxCust, ave) {
+//   this.name = name;
+//   this.minCust = minCust;
+//   this.maxCust = maxCust;
+//   this.ave = ave;
+// }
+
 Dog.prototype.oneYearLater = function() {
   this.age++;
 }
 
 Dog.prototype.render = function() {
-  let dogRow = document.createElement("tr");
+  let dogRow = document.createElement("tr"); // create row
 
-  let dogNameTD = document.createElement("td");
+  let dogNameTD = document.createElement("td"); //create data element
   dogNameTD.textContent = this.name;
   dogRow.appendChild(dogNameTD);
 
-  let dogBreedTD = document.createElement("td");
+  let dogBreedTD = document.createElement("td") //create data element dogBreedTD.textContent = this.breed;
   dogBreedTD.textContent = this.breed;
   dogRow.appendChild(dogBreedTD);
 
-  let dogAgeTD = document.createElement("td");
+  let dogAgeTD = document.createElement("td") //create data element;
   dogAgeTD.textContent = this.age;
   dogRow.appendChild(dogAgeTD);
 
@@ -62,9 +69,27 @@ for (let dog of state.dogs) {
 }
 
 for (let dog of state.dogs) {
-  dog.render();
+  dog.render()
 }
 
+// STEP 1: get the form
+let formElm = document.getElementById("new-dog-form");
+
+// STEP 2: 
+function handleSubmitDog(event) {
+  event.preventDefault();
+  let target = event.target;
+
+  let name = target.name.value;
+  let breed = target.breed.value;
+  let age = target.age.value;
+  
+  let dog = new Dog(name, breed, age);
+  state.dogs.push(dog)
+  dog.render();
+}
+// STEP 3:
+formElm.addEventListener("submit", handleSubmitDog);
 
 // Object literal
 // let dog1 = {
